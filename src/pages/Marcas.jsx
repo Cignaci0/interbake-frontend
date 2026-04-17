@@ -47,6 +47,24 @@ export default function Marcas({ activeView }) {
   const [empleadosData, setEmpleadosData] = useState([]);
   const [dispositivosData, setDispositivosData] = useState([]);
 
+  const filteredMarcas = useMemo(() => {
+    if (!busquedaText) return listadoMarcas;
+    const text = busquedaText.toLowerCase();
+    
+    return listadoMarcas.filter(marca => {
+      const turnoText = marca.empleado?.turno?.detalle_turno?.horario_id ?
+        `${marca.empleado.turno.detalle_turno.horario_id.hora_entrada?.substring(0, 5)} - ${marca.empleado.turno.detalle_turno.horario_id.hora_salida?.substring(0, 5)}` : "";
+        
+      return (
+        (marca.fecha_marca && marca.fecha_marca.toLowerCase().includes(text)) ||
+        (marca.hora_marca && String(marca.hora_marca).toLowerCase().includes(text)) ||
+        (marca.evento && String(marca.evento).toLowerCase().includes(text)) ||
+        (marca.hashcode && String(marca.hashcode).toLowerCase().includes(text)) ||
+        (turnoText.toLowerCase().includes(text))
+      );
+    });
+  }, [listadoMarcas, busquedaText]);
+
   useEffect(() => {
     const fetchEmpleados = async () => {
       try {
@@ -118,6 +136,7 @@ export default function Marcas({ activeView }) {
       console.log("Resultados:", resultados);
       const marcas = Array.isArray(resultados) ? resultados : (resultados.data || []);
       setListadoMarcas(marcas);
+      setTotalRecords(marcas.length);
       toast.success(marcas.length > 0 ? "Resultados encontrados" : "No hay marcas para esta selección", { id: toastId });
     } catch (error) {
       console.error("Error al buscar marcas", error);
@@ -246,12 +265,12 @@ export default function Marcas({ activeView }) {
                   </Table.Row>
                 </Table.Header>
                 <Table.Body>
-                  {listadoMarcas.length > 0 ? (
-                    listadoMarcas.map((marca, index) => (
+                  {filteredMarcas.length > 0 ? (
+                    filteredMarcas.map((marca, index) => (
                       <Table.Row key={index}>
                         <Table.Cell textAlign="center">{marca.fecha_marca}</Table.Cell>
                         <Table.Cell textAlign="center">{marca.hora_marca || "-"}</Table.Cell>
-                        <Table.Cell textAlign="center">{marca.evento}</Table.Cell>
+                        <Table.Cell textAlign="center">{marca.evento === 1 ? "Entrada" : marca.evento === 2 ? "Salida" : "-"}</Table.Cell>
                         <Table.Cell textAlign="center">
                           {marca.empleado?.turno?.detalle_turno?.horario_id
                             ? `${marca.empleado.turno.detalle_turno.horario_id.hora_entrada?.substring(0, 5)} - ${marca.empleado.turno.detalle_turno.horario_id.hora_salida?.substring(0, 5)}`
@@ -287,7 +306,7 @@ export default function Marcas({ activeView }) {
                   ) : (
                     <Table.Row>
                       <Table.Cell colSpan={10} textAlign="center" py={10} color="gray.500">
-                        Seleccione un empleado y un rango de fechas para comenzar la búsqueda
+                        {listadoMarcas.length === 0 ? "Seleccione un empleado y un rango de fechas para comenzar la búsqueda" : "No se encontraron coincidencias para la búsqueda"}
                       </Table.Cell>
                     </Table.Row>
                   )}
