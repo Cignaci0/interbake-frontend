@@ -1,0 +1,128 @@
+
+> app-pagos-react@0.0.0 lint
+> eslint .
+
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\App.jsx
+  6:36  error  'Component' is defined but never used  no-unused-vars
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\components\CreatePagoNomina.jsx
+  72:14  error  'error' is defined but never used  no-unused-vars
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\components\EditarSolicitudPago.jsx
+  106:6  warning  React Hook useEffect has a missing dependency: 'initData'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\components\GenerarSolicitudPago.jsx
+    4:8  error    'getPagosNominas' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                                  no-unused-vars
+   23:9  error    'handleLimpiar' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                           no-unused-vars
+  133:6  warning  React Hook useEffect has a missing dependency: 'getPagosNoAsignados'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\components\UpdatePagoBasico.jsx
+  58:6  warning  React Hook useEffect has a missing dependency: 'getCuentaCargo'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\components\ui\color-mode.jsx
+  21:17  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+  34:17  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\components\ui\toaster.jsx
+  12:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\pages\Dashboard.jsx
+  50:6  warning  React Hook useEffect has a missing dependency: 'activeView'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\pages\GeneracionSolicitud.jsx
+  35:10  error  'asignar' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 no-unused-vars
+  35:19  error  'setAsignar' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              no-unused-vars
+  55:5   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  53 |
+  54 |   useEffect(() => {
+> 55 |     getTiposPagos();
+     |     ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  56 |   }, []);
+  57 |
+  58 |   return (  react-hooks/set-state-in-effect
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\pages\PagoBasico.jsx
+  264:10  error  Parsing error: Identifier 'openCreate' has already been declared
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\pages\PagoNomina.jsx
+  114:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  112 |
+  113 |   useEffect(() => {
+> 114 |     getTiposPagos();
+      |     ^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  115 |     fetchBancos();
+  116 |   }, []);
+  117 |                                                       react-hooks/set-state-in-effect
+  119:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  117 |
+  118 |   useEffect(() => {
+> 119 |     setPage(1);
+      |     ^^^^^^^ Avoid calling setState() directly within an effect
+  120 |     getListadoPagos();
+  121 |   }, [filtroTipo, filtroEstado, filtroFecha]);
+  122 |                         react-hooks/set-state-in-effect
+  121:6  warning  React Hook useEffect has a missing dependency: 'getListadoPagos'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          react-hooks/exhaustive-deps
+  124:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  122 |
+  123 |   useEffect(() => {
+> 124 |     getListadoPagos();
+      |     ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  125 |   }, [page, limit]);
+  126 |
+  127 |   useEffect(() => {                                       react-hooks/set-state-in-effect
+  125:6  warning  React Hook useEffect has a missing dependency: 'getListadoPagos'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          react-hooks/exhaustive-deps
+  129:7  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  127 |   useEffect(() => {
+  128 |     if (activeView === "Ingreso Pago Nomina") {
+> 129 |       getListadoPagos();
+      |       ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  130 |     }
+  131 |   }, [activeView]);
+  132 |  react-hooks/set-state-in-effect
+  131:6  warning  React Hook useEffect has a missing dependency: 'getListadoPagos'. Either include it or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          react-hooks/exhaustive-deps
+
+C:\Users\ADMINISTRATIVO\Documents\Proyectos\API\app-pagos-react\src\pages\SolicitudPago.jsx
+  148:6  warning  React Hook useEffect has a missing dependency: 'getListadoPagos'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  152:6  warning  React Hook useEffect has a missing dependency: 'getListadoPagos'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  158:6  warning  React Hook useEffect has a missing dependency: 'getListadoPagos'. Either include it or remove the dependency array  react-hooks/exhaustive-deps
+  261:9  error    'handleGuardar' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                       no-unused-vars
+  335:9  error    'obtenerDigitoVerificador' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u            no-unused-vars
+
+✖ 27 problems (17 errors, 10 warnings)
+
